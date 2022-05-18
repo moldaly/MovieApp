@@ -1,5 +1,5 @@
 //
-//  StudentCell.swift
+//  MovieCell.swift
 //  Movies
 //
 //  Created by Aida Moldaly on 18.05.2022.
@@ -7,8 +7,15 @@
 
 import UIKit
 
-class StudentCell: UITableViewCell {
+class MovieCell: UITableViewCell {
 
+    @IBOutlet var movieImage: UIImageView!
+    
+    @IBOutlet var movieRate: UILabel!
+    
+    
+    @IBOutlet var movieName: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

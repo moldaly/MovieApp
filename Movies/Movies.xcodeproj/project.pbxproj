@@ -13,8 +13,8 @@
 		1C5D08F728350CE90069FC63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C5D08F528350CE90069FC63 /* Main.storyboard */; };
 		1C5D08F928350CEA0069FC63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C5D08F828350CEA0069FC63 /* Assets.xcassets */; };
 		1C5D08FC28350CEA0069FC63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C5D08FA28350CEA0069FC63 /* LaunchScreen.storyboard */; };
-		1C5D0905283512D20069FC63 /* StudentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5D0904283512D20069FC63 /* StudentCell.swift */; };
-		1C5D0907283512F90069FC63 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5D0906283512F90069FC63 /* Student.swift */; };
+		1C5D0905283512D20069FC63 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5D0904283512D20069FC63 /* MovieCell.swift */; };
+		1C5D0909283520020069FC63 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5D0908283520020069FC63 /* Movies.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +26,8 @@
 		1C5D08F828350CEA0069FC63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C5D08FB28350CEA0069FC63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1C5D08FD28350CEA0069FC63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1C5D0904283512D20069FC63 /* StudentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCell.swift; sourceTree = "<group>"; };
-		1C5D0906283512F90069FC63 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		1C5D0904283512D20069FC63 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		1C5D0908283520020069FC63 /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,10 +62,14 @@
 			children = (
 				1C5D0903283511740069FC63 /* AdditionalFiles */,
 				1C5D08F328350CE90069FC63 /* ViewController.swift */,
-				1C5D0904283512D20069FC63 /* StudentCell.swift */,
-				1C5D0906283512F90069FC63 /* Student.swift */,
+				1C5D0904283512D20069FC63 /* MovieCell.swift */,
+				1C5D0908283520020069FC63 /* Movies.swift */,
 				1C5D08F528350CE90069FC63 /* Main.storyboard */,
 				1C5D08F828350CEA0069FC63 /* Assets.xcassets */,
+				1C5D08FD28350CEA0069FC63 /* Info.plist */,
+				1C5D08FA28350CEA0069FC63 /* LaunchScreen.storyboard */,
+				1C5D08F128350CE90069FC63 /* SceneDelegate.swift */,
+				1C5D08EF28350CE90069FC63 /* AppDelegate.swift */,
 			);
 			path = Movies;
 			sourceTree = "<group>";
@@ -73,10 +77,6 @@
 		1C5D0903283511740069FC63 /* AdditionalFiles */ = {
 			isa = PBXGroup;
 			children = (
-				1C5D08EF28350CE90069FC63 /* AppDelegate.swift */,
-				1C5D08F128350CE90069FC63 /* SceneDelegate.swift */,
-				1C5D08FA28350CEA0069FC63 /* LaunchScreen.storyboard */,
-				1C5D08FD28350CEA0069FC63 /* Info.plist */,
 			);
 			path = AdditionalFiles;
 			sourceTree = "<group>";
@@ -152,11 +152,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C5D0909283520020069FC63 /* Movies.swift in Sources */,
 				1C5D08F428350CE90069FC63 /* ViewController.swift in Sources */,
 				1C5D08F028350CE90069FC63 /* AppDelegate.swift in Sources */,
 				1C5D08F228350CE90069FC63 /* SceneDelegate.swift in Sources */,
-				1C5D0907283512F90069FC63 /* Student.swift in Sources */,
-				1C5D0905283512D20069FC63 /* StudentCell.swift in Sources */,
+				1C5D0905283512D20069FC63 /* MovieCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
