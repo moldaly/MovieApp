@@ -13,7 +13,6 @@ class MovieCell: UITableViewCell {
     
     @IBOutlet var movieRate: UILabel!
     
-    
     @IBOutlet var movieName: UILabel!
     
     override func awakeFromNib() {
