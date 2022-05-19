@@ -22,19 +22,24 @@ class ViewController: UIViewController {
     ]
     
     var genres: [Genres] = [
-        Genres.init(name: "All"),
-        Genres.init(name: "Action"),
-        Genres.init(name: "Drama"),
-        Genres.init(name: "Horror"),
-        Genres.init(name: "Detective"),
-        Genres.init(name: "Comedy")
+        Genres.init(name: " All "),
+        Genres.init(name: " Action "),
+        Genres.init(name: " Drama "),
+        Genres.init(name: " Horror "),
+        Genres.init(name: " Detective "),
+        Genres.init(name: " Comedy ")
     ]
      
+//    @IBOutlet var genreTitle: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         myTableView.delegate = self
         myTableView.dataSource = self
         myGenreCollectionView.dataSource = self
+//        genreTitle.layer.borderColor = UIColor.black.cgColor
+//        genreTitle.layer.borderWidth = 2
+//        genreTitle.layer.cornerRadius = 5
+//        genreTitle.layer.masksToBounds = true
     }
 }
 
