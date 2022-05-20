@@ -18,6 +18,38 @@
             endingLineNumber = "20"
             landmarkName = "movies"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "6B8D289C-D403-4D4D-B2D7-725A77F422F9 - 9e0008fc6d683df2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Movies.ViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Movies.ViewController"
+                  moduleName = "Movies"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Aida.Moldaly/Desktop/ios_movie_project/Movies/Movies/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "2052">
+               </Location>
+               <Location
+                  uuid = "6B8D289C-D403-4D4D-B2D7-725A77F422F9 - f90b8cac0dbfa86"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Movies.ViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Movies.ViewController&gt;"
+                  moduleName = "Movies"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Aida.Moldaly/Desktop/ios_movie_project/Movies/Movies/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "2028">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

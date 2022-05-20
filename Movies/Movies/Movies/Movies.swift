@@ -11,5 +11,11 @@ import UIKit
 struct Movies {
     var image: UIImage?
     var name: String?
-    var rate: String?
+    var rate: Double?
+    var id: Int?
+    
+    var descriptionImage: UIImage?
+    var date: String?
+    var description: String?
+    
 }

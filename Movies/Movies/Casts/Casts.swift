@@ -12,4 +12,6 @@ struct Casts {
     var image: UIImage?
     var name: String?
     var position: String?
+    var id: Int?
+    var movie: String?
 }

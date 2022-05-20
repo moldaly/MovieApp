@@ -13,10 +13,6 @@ class GenreCell: UICollectionViewCell {
     
     func setUp(with genre: Genres) {
         genreTitle.text = genre.name
-        genreTitle.layer.borderColor = UIColor.orange.cgColor
-        genreTitle.layer.borderWidth = 2
-        genreTitle.layer.cornerRadius = 5
-        genreTitle.layer.masksToBounds = true
     }
 }
 

@@ -10,4 +10,5 @@ import UIKit
 
 struct Genres {
     var name: String?
+    var id: Int?
 }
