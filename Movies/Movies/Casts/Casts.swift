@@ -14,4 +14,6 @@ struct Casts {
     var position: String?
     var id: Int?
     var movie: String?
+    var biograpy: String?
+    var birthday: String?
 }

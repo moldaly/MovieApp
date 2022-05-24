@@ -10,10 +10,9 @@ import UIKit
 class CastCell: UICollectionViewCell {
     
     @IBOutlet var actorImage: UIImageView!
-    
     @IBOutlet var actorName: UILabel!
-    
     @IBOutlet var actorPositon: UILabel!
+    
     
     func setUp(with cast: Casts) {
         actorImage.image = cast.image

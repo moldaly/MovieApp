@@ -12,6 +12,7 @@ struct Movies {
     var image: UIImage?
     var name: String?
     var rate: Double?
+    var genre: String?
     var id: Int?
     
     var descriptionImage: UIImage?
