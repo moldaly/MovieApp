@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct Genres {
+struct Genre {
     var name: String?
-    var id: Int?
+    var id: Int
 }

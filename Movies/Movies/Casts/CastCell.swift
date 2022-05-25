@@ -9,14 +9,14 @@ import UIKit
 
 class CastCell: UICollectionViewCell {
     
-    @IBOutlet var actorImage: UIImageView!
-    @IBOutlet var actorName: UILabel!
-    @IBOutlet var actorPositon: UILabel!
+    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var nameView: UILabel!
+    @IBOutlet var positonView: UILabel!
     
     
-    func setUp(with cast: Casts) {
-        actorImage.image = cast.image
-        actorName.text = cast.name
-        actorPositon.text = cast.position
+    func setUp(with cast: Cast) {
+        imageView.image = cast.image
+        nameView.text = cast.name
+        positonView.text = cast.position
     }
 }

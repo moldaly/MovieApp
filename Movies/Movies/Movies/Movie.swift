@@ -8,12 +8,14 @@
 import Foundation
 import UIKit
 
-struct Movies {
+typealias ID = Int
+
+struct Movie {
     var image: UIImage?
     var name: String?
-    var rate: Double?
-    var genre: String?
-    var id: Int?
+    var rating: Double?
+    var genreIds: [ID]
+    var id: Int
     
     var descriptionImage: UIImage?
     var date: String?

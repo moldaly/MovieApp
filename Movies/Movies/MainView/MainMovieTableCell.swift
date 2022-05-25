@@ -1,18 +1,15 @@
 //
-//  MovieCell.swift
+//  MainMovieTableCell.swift
 //  Movies
 //
-//  Created by Aida Moldaly on 18.05.2022.
+//  Created by Aida Moldaly on 25.05.2022.
 //
 
 import UIKit
 
-class MovieCell: UITableViewCell {
-
-    @IBOutlet var imageCellView: UIImageView!
-    @IBOutlet var ratingView: UILabel!
-    @IBOutlet var nameView: UILabel!
-     
+class MainMovieTableCell: UITableViewCell {
+    @IBOutlet var myCollectionView: UICollectionView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

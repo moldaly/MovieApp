@@ -9,11 +9,12 @@ import UIKit
 
 class GenreCell: UICollectionViewCell {
     
-    @IBOutlet var genreTitle: UILabel!
+    @IBOutlet var title: UILabel!
     
-    func setUp(with genre: Genres) {
-        genreTitle.text = genre.name
+    func setUp(with genre: Genre) {
+        title.text = genre.name
     }
 }
+
 
 

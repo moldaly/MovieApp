@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct Casts {
+struct Cast {
     var image: UIImage?
     var name: String?
     var position: String?
