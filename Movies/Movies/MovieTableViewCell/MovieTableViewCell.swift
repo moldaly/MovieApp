@@ -7,7 +7,14 @@
 
 import UIKit
 
+protocol UIdelegate {
+    func goToNext() -> Void
+    func goToDesc(index: Int) -> Void
+}
 class MovieTableViewCell: UITableViewCell {
+    var delegate: UIdelegate?
+    
+    
     private var movies: [Movie] = [] {
         didSet {
             collectionView.reloadData()
@@ -16,6 +23,11 @@ class MovieTableViewCell: UITableViewCell {
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var collectionView: UICollectionView!
+
+    @IBAction func allButton(_ sender: UIButton) {
+        delegate?.goToNext()
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,6 +53,15 @@ extension MovieTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath) as! MovieCollectionViewCell
         cell.configure(with: movies[indexPath.item])
+        
+        if movies[indexPath.row].rating! >= 9 {
+            cell.ratingContainerView.backgroundColor = UIColor.systemGreen
+        } else if movies[indexPath.row].rating! <= 9 && movies[indexPath.row].rating! >= 5 {
+            cell.ratingContainerView.backgroundColor = UIColor.systemOrange
+        } else if movies[indexPath.row].rating! <= 5 {
+            cell.ratingContainerView.backgroundColor = UIColor.systemRed
+        }
+        
         return cell
     }
     
@@ -49,6 +70,12 @@ extension MovieTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 128, height: 270)
+        CGSize(width: 128, height: 285)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.goToDesc(index: indexPath.row)
+
+    }
+    
 }
