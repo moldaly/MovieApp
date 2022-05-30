@@ -6,14 +6,23 @@
 //
 
 import Foundation
-import UIKit
 
-struct Cast {
-    var image: UIImage?
-    var name: String?
-    var position: String?
-    var id: Int?
-    var movie: String?
-    var biograpy: String?
-    var birthday: String?
+struct Cast: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case position = "known_for_department"
+        case image = "profile_path"
+        case birthday
+        case biography
+        case birthPlace = "place_of_birth"
+    }
+    
+    let id: Int
+    let name: String?
+    let position: String?
+    let image: String?
+    let birthday: String?
+    let biography: String?
+    let birthPlace: String?
 }

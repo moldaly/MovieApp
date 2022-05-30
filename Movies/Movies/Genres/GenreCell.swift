@@ -11,7 +11,7 @@ class GenreCell: UICollectionViewCell {
     
     @IBOutlet var title: UILabel!
     
-    func setUp(with genre: Genre) {
+    func configure(with genre: Genre) {
         title.text = genre.name
     }
 }

@@ -15,7 +15,7 @@ class CastCell: UICollectionViewCell {
     
     
     func setUp(with cast: Cast) {
-        imageView.image = cast.image
+//        imageView.image = cast.image
         nameView.text = cast.name
         positonView.text = cast.position
     }

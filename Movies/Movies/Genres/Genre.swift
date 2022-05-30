@@ -6,9 +6,12 @@
 //
 
 import Foundation
-import UIKit
 
-struct Genre {
-    var name: String?
+struct Genre: Decodable {
     var id: Int
+    var name: String?
+}
+
+struct GenresEntity: Decodable {
+    let genres: [Genre]
 }

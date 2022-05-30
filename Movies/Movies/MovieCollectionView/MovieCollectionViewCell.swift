@@ -20,14 +20,29 @@ class MovieCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func configure(with movie: Movie) {
-        posterImageView.image = movie.image
+    func configure(with movie: Movie, genres: [Genre]) {
+
+        NetworkManager.shared.loadImage(with: movie.image ?? "", completion: { [weak self]imageData in
+            self?.posterImageView.image = UIImage(data: imageData)
+        })
         nameLabel.text = movie.name
-//        for item in movie.genreIds {
-//            genreLable.text = movie.genreIds[item]
-//        }
-        guard let rating = movie.rating else { return }
-        ratingLabel.text = "★ \(rating)"
-        ratingContainerView.backgroundColor = .orange
+        genreLable.text = getGenres(by: movie.genreIds, genres: genres)
+        ratingLabel.text = "★ \(movie.rating)"
+        
+        if movie.rating < 4 {
+            ratingContainerView.backgroundColor = .systemRed
+        } else if movie.rating < 7 {
+            ratingContainerView.backgroundColor = .systemOrange
+        } else {
+            ratingContainerView.backgroundColor = .systemGreen
+        }
+    }
+    
+    func getGenres(by ids: [Int], genres: [Genre]) -> String? {
+        var array: [String] = []
+        for id in ids {
+            array.append(genres.first { $0.id == id }?.name ?? "")
+        }
+        return array.joined(separator: ", ")
     }
 }

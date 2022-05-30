@@ -11,9 +11,13 @@ protocol UIdelegate {
     func goToNext() -> Void
     func goToDesc(index: Int) -> Void
 }
+
 class MovieTableViewCell: UITableViewCell {
     var delegate: UIdelegate?
     
+    static var identifier = "MovieTableViewCell"
+    
+    private var genres: [Genre] = []
     
     private var movies: [Movie] = [] {
         didSet {
@@ -23,7 +27,6 @@ class MovieTableViewCell: UITableViewCell {
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var collectionView: UICollectionView!
-
     @IBAction func allButton(_ sender: UIButton) {
         delegate?.goToNext()
     }
@@ -41,8 +44,8 @@ class MovieTableViewCell: UITableViewCell {
     }
     
     func configure(with viewModel: (title: String?, movies: [Movie])) {
-        titleLabel.text = viewModel.title
-        movies = viewModel.movies
+        self.titleLabel.text = viewModel.title
+        self.movies = viewModel.movies
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         collectionView.collectionViewLayout = layout
@@ -52,15 +55,7 @@ class MovieTableViewCell: UITableViewCell {
 extension MovieTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath) as! MovieCollectionViewCell
-        cell.configure(with: movies[indexPath.item])
-        
-        if movies[indexPath.row].rating! >= 9 {
-            cell.ratingContainerView.backgroundColor = UIColor.systemGreen
-        } else if movies[indexPath.row].rating! <= 9 && movies[indexPath.row].rating! >= 5 {
-            cell.ratingContainerView.backgroundColor = UIColor.systemOrange
-        } else if movies[indexPath.row].rating! <= 5 {
-            cell.ratingContainerView.backgroundColor = UIColor.systemRed
-        }
+        cell.configure(with: movies[indexPath.item], genres: genres)
         
         return cell
     }

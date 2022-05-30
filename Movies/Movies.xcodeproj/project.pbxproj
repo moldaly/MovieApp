@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C3620C0284399B20009FAF3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3620BF284399B20009FAF3 /* NetworkManager.swift */; };
 		1C5D08F028350CE90069FC63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5D08EF28350CE90069FC63 /* AppDelegate.swift */; };
 		1C5D08F228350CE90069FC63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5D08F128350CE90069FC63 /* SceneDelegate.swift */; };
 		1C5D08F428350CE90069FC63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5D08F328350CE90069FC63 /* ViewController.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C3620BF284399B20009FAF3 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1C5D08EC28350CE90069FC63 /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C5D08EF28350CE90069FC63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C5D08F128350CE90069FC63 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				1C5D08F328350CE90069FC63 /* ViewController.swift */,
 				1CDB6DD828361FD600D34BFA /* DescriptionViewController.swift */,
 				1C761875283CCDC200A17F60 /* CastMemberViewController.swift */,
+				1C3620BF284399B20009FAF3 /* NetworkManager.swift */,
 			);
 			path = Contollers;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				1C5D08F228350CE90069FC63 /* SceneDelegate.swift in Sources */,
 				1C76188C283E5E4D00A17F60 /* MovieTableViewCell.swift in Sources */,
 				1C5D0905283512D20069FC63 /* MovieCell.swift in Sources */,
+				1C3620C0284399B20009FAF3 /* NetworkManager.swift in Sources */,
 				1CDB6DDB28364C7E00D34BFA /* CastCell.swift in Sources */,
 				1C761892283E61EE00A17F60 /* MovieCollectionViewCell.swift in Sources */,
 			);
