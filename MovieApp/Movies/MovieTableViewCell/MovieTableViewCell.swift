@@ -7,15 +7,22 @@
 
 import UIKit
 
-protocol UIdelegate {
-    func goToNext() -> Void
-    func goToDesc(index: Int) -> Void
-}
+typealias CallBack = () -> Void
+typealias CollectionViewMovie = (Int, Int) -> Void
 
 class MovieTableViewCell: UITableViewCell {
-    var delegate: UIdelegate?
     
     static var identifier = "MovieTableViewCell"
+    
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var collectionView: UICollectionView!
+    @IBAction func allButton(_ sender: UIButton) {
+        onAllMoviesButtonDidTap?()
+    }
+    
+    var sectionIndex: Int?
+    var onAllMoviesButtonDidTap: CallBack?
+    var onMovieCollectionViewDidTap: CollectionViewMovie?
     
     private var genres: [Genre] = []
     
@@ -25,19 +32,9 @@ class MovieTableViewCell: UITableViewCell {
         }
     }
     
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var collectionView: UICollectionView!
-    @IBAction func allButton(_ sender: UIButton) {
-        delegate?.goToNext()
-    }
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        configureCollectionView()
-    }
-    
-    private func configureCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "MovieCollectionViewCell", bundle: Bundle(for: MovieCollectionViewCell.self)), forCellWithReuseIdentifier: "MovieCollectionViewCell")
@@ -70,6 +67,6 @@ extension MovieTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.goToDesc(index: indexPath.row)
+        onMovieCollectionViewDidTap?(sectionIndex ?? 0, indexPath.row)
     }
 }

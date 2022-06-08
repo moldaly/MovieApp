@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ViewController: UIViewController {
     
@@ -14,17 +15,13 @@ class ViewController: UIViewController {
     @IBOutlet var myTableView: UITableView!
     @IBOutlet var myCollectionView: UICollectionView!
     
-    var movies1: [Movie] = []
+//    var movies1: [Movie] = []
     var movies: [Movie] = []
-    var genres: [Genre] = [] {
-        didSet {
-            myCollectionView.reloadData()
-        }
-    }
+    var genres: [Genre] = []
+    var casts: [Cast] = []
     
-    var movieCastsHeirs: [Cast] = []
-    var movieCastsBlueSea: [Cast] = []
-    var movieCastsBoyFlowers: [Cast] = []
+    static var identifier = "ViewController"
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +30,6 @@ class ViewController: UIViewController {
         myCollectionView.dataSource = self
         myCollectionView.delegate = self
         title = "Movies"
-        loadGenres()
     }
 }
 
@@ -46,24 +42,23 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") as! MovieCell
         
-        cell.configure(with: movies[indexPath.item])
-    
+        cell.configure(with: movies[indexPath.row])
+        
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let vc = storyboard?.instantiateViewController(withIdentifier: "DescriptionViewController") as! DescriptionViewController
-        vc.movies = movies
-//        vc.filmsTitle =  movies[indexPath.row].name
-//        vc.filmsImage = movies[indexPath.row].image
-//        vc.filmsDate = movies[indexPath.row].date
-//        vc.filmsDescription = movies[indexPath.row].description
-        if indexPath.row == 0 {
-            vc.casts = movieCastsHeirs
-        } else if indexPath.row == 1 {
-            vc.casts = movieCastsBlueSea
-        } else if indexPath.row == 2 {
-            vc.casts = movieCastsBoyFlowers
-        }
+        
+        vc.movie = movies[indexPath.row]
+        
+//        networkManager.loadCastByMovieID(id: movies[indexPath.row].id) { [weak self] casts in
+//            DispatchQueue.main.async {
+//                self?.casts = casts
+//            }
+//        }
+
+        vc.casts = casts
         
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -97,11 +92,11 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 //    }
 }
 
-extension ViewController {
-    private func loadGenres() {
-         //network request
-        networkManager.loadGenres { [weak self] genres in
-            self?.genres = genres
-        }
-    }
-}
+//extension ViewController {
+//    private func loadCasts(id: Int) {
+//        networkManager.loadCastByMovieID(id: id){ [weak self] casts in
+//            self?.casts = casts
+//        }
+//    }
+//}
+

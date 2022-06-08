@@ -82,6 +82,12 @@ class NetworkManager {
         }
     }
     
+    func loadCastByMovieID(id: Int, completion: @escaping ([Cast]) -> Void ) {
+        loadCast(path: "/movie/\(id)/credits") { casts in
+            completion(casts)
+        }
+    }
+    
     private func loadMovies(path: String, completion: @escaping ([Movie]) -> Void) {
         var components = urlComponents
         components.path = path
@@ -116,40 +122,40 @@ class NetworkManager {
         task.resume()
     }
     
-    func loadImage(with path: String, completion: @escaping (Data) -> Void) {
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "image.tmdb.org"
-        components.path = "/t/p/w200\(path)"
+    private func loadCast(path: String, completion: @escaping ([Cast]) -> Void) {
+        var components = urlComponents
+        components.path = path
         
         guard let requestUrl = components.url else {
             return
         }
-        let task = session.downloadTask(with: requestUrl) { localUrl, response, error in
-            guard error == nil else {
-                print("Error: error calling GET")
-                return
-            }
-            guard let localUrl = localUrl else {
-                print("Error: Did not receive data")
-                return
-            }
-            guard let response = response as? HTTPURLResponse, (200 ..< 300) ~= response.statusCode else {
-                print("Error: HTTP request failed")
-                return
-            }
-            do {
-                let moviesEntity = try Data(contentsOf: localUrl)
-                DispatchQueue.main.async {
-                    completion(moviesEntity)
+            let task = session.dataTask(with: requestUrl) { data, response, error in
+                guard error == nil else {
+                    print("Error: error calling GET")
+                    return
                 }
-            } catch {
-                DispatchQueue.main.async {
-                    print("Oops! Error occured")
+                guard let data = data else {
+                    print("Error: Did not receive data")
+                    return
+                }
+                guard let response = response as? HTTPURLResponse, (200 ..< 300) ~= response.statusCode else {
+                    print("Error: HTTP request failed")
+                    return
+                }
+                do {
+                    let castEntity = try JSONDecoder().decode(CastEntity.self, from: data)
+                    DispatchQueue.main.async {
+                        completion(castEntity.cast)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        completion([])
+                    }
                 }
             }
-        }
         task.resume()
     }
+    
+
 
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MovieCell: UITableViewCell {
 
@@ -20,9 +21,8 @@ class MovieCell: UITableViewCell {
     }
     
     func configure(with movie: Movie) {
-        NetworkManager.shared.loadImage(with: movie.image ?? "", completion: { [weak self]imageData in
-            self?.imageCellView.image = UIImage(data: imageData)
-        })
+        let url = URL(string: movie.posterUrl ?? "")
+        imageCellView.kf.setImage(with: url)
         nameView.text = movie.name
         ratingView.text = "★ \(movie.rating)"
         
@@ -37,10 +37,8 @@ class MovieCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
-
 }
 
 

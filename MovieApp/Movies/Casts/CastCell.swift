@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CastCell: UICollectionViewCell {
     
@@ -13,9 +14,11 @@ class CastCell: UICollectionViewCell {
     @IBOutlet var nameView: UILabel!
     @IBOutlet var positonView: UILabel!
     
+    var onCastsCollectionViewDidTap: CallBack?
     
     func setUp(with cast: Cast) {
-//        imageView.image = cast.image
+        let url = URL(string: cast.castUrl ?? "")
+        imageView.kf.setImage(with: url)
         nameView.text = cast.name
         positonView.text = cast.position
     }

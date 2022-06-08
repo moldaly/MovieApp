@@ -34,16 +34,12 @@ class MainViewController: UIViewController {
         }
     }
     
-//    private var allMovies: [Movie] = []
-//    {
-//        didSet {
-//            tableView.reloadData()
-//        }
-//    }
-    
-    var movieCastsHeirs: [Cast] = []
-    var movieCastsBlueSea: [Cast] = []
-    var movieCastsBoyFlowers: [Cast] = []
+    var casts: [Cast] = []
+    {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     lazy var sectionMovies: [[Movie]] = [] {
         didSet {
@@ -57,6 +53,7 @@ class MainViewController: UIViewController {
         title = "Movies"
         loadGenres()
         loadMovies()
+        loadCasts(id: <#Int#>)
     }
     
     private func configureTableView() {
@@ -70,58 +67,52 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        sectionNames.count
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        sectionNames.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifier, for: indexPath) as! MovieTableViewCell
         
         if sectionMovies.count > 0 {
-            cell.configure(with: (sectionNames[indexPath.section], movies: sectionMovies[indexPath.section], genres: genres))
+            cell.configure(with: (sectionNames[indexPath.row], movies: sectionMovies[indexPath.row], genres: genres))
         }
-        cell.delegate = self
+
+        cell.onAllMoviesButtonDidTap = { [weak self ] in
+            guard let self = self else { return }
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: ViewController.identifier) as! ViewController
+            vc.movies = self.sectionMovies[indexPath.row]
+            vc.genres = self.genres
+            vc.casts = self.casts
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        cell.sectionIndex = indexPath.row
+        
+        cell.onMovieCollectionViewDidTap = { [weak self ] sectionIndex, movieIndex in
+            guard let self = self else { return }
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "DescriptionViewController") as! DescriptionViewController
+            vc.movie =  self.sectionMovies[sectionIndex][movieIndex]
+            
+            vc.casts = self.casts
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
         return cell
     }
 }
 
-extension MainViewController: UIdelegate {
-    
-    func goToDesc(index: Int) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "DescriptionViewController") as! DescriptionViewController
-        vc.filmsTitle =  todayAtTheCinema[index].name
-        vc.filmsDate = todayAtTheCinema[index].date
-        
-        if index == 0 {
-            vc.casts = movieCastsHeirs
-        } else if index == 1 {
-            vc.casts = movieCastsBlueSea
-        } else if index == 2 {
-            vc.casts = movieCastsBoyFlowers
-        }
-
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func goToNext() {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-        vc.movies = todayAtTheCinema
-//        vc.movies = soonAtTheCinema
-//        vc.movies = trendingMovies
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-}
 
 extension MainViewController {
     private func loadGenres() {
          //network request
         networkManager.loadGenres { [weak self] genres in
             self?.genres = genres
-
+        }
+    }
+    private func loadCasts(id: Int) {
+        networkManager.loadCastByMovieID(id: id){ [weak self] casts in
+            self?.casts = casts
         }
     }
     

@@ -15,20 +15,17 @@ class CastMemberViewController: UIViewController {
     @IBOutlet var actorActingView: UILabel!
     @IBOutlet var actorBiographyView: UILabel!
     
-    var actorImage: UIImage?
-    var actorName: String?
-    var actorBirthday: String?
-    var actorActing: String?
-    var actorBiography: String?
+    var cast: Cast?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        actorImageView.image = actorImage
-        actorNameView.text = actorName
-        actorBirthdayView.text = actorBirthday
-        actorActingView.text = actorActing
-        actorBiographyView.text = actorBiography
+        if let cast = cast {
+            let url = URL(string: cast.castUrl ?? "")
+            actorImageView.kf.setImage(with: url)
+            actorNameView.text = cast.name
+            actorBirthdayView.text = cast.birthday
+            actorActingView.text = cast.position
+            actorBiographyView.text = cast.biography
+        }
     }
-    
-
 }

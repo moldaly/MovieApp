@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MovieCollectionViewCell: UICollectionViewCell {
-
+    
     @IBOutlet var posterImageView: UIImageView!
     @IBOutlet var ratingContainerView: UIView!
     @IBOutlet var ratingLabel: UILabel!
@@ -21,10 +22,10 @@ class MovieCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with movie: Movie, genres: [Genre]) {
-
-        NetworkManager.shared.loadImage(with: movie.image ?? "", completion: { [weak self]imageData in
-            self?.posterImageView.image = UIImage(data: imageData)
-        })
+        
+        let url = URL(string: movie.posterUrl ?? "")
+        posterImageView.kf.setImage(with: url)
+        
         nameLabel.text = movie.name
         genreLable.text = getGenres(by: movie.genreIds, genres: genres)
         ratingLabel.text = "★ \(movie.rating)"
@@ -43,9 +44,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
         for id in ids {
             array.append(genres.first { $0.id == id }?.name ?? "")
         }
-//        for element in array {
-//            print("Element is ", element)
-//        }
         return array.joined(separator: ", ")
     }
 }

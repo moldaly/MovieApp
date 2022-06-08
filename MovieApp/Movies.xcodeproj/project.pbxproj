@@ -22,11 +22,13 @@
 		1C76188D283E5E4D00A17F60 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C76188B283E5E4D00A17F60 /* MovieTableViewCell.xib */; };
 		1C761892283E61EE00A17F60 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C761890283E61EE00A17F60 /* MovieCollectionViewCell.swift */; };
 		1C761893283E61EE00A17F60 /* MovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C761891283E61EE00A17F60 /* MovieCollectionViewCell.xib */; };
+		1CBA764C285064260069BEAE /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1CBA764B285064260069BEAE /* Alamofire */; };
 		1CDB6DD928361FD600D34BFA /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB6DD828361FD600D34BFA /* DescriptionViewController.swift */; };
 		1CDB6DDB28364C7E00D34BFA /* CastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB6DDA28364C7E00D34BFA /* CastCell.swift */; };
 		1CDB6DDD28364C9700D34BFA /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB6DDC28364C9700D34BFA /* Cast.swift */; };
 		1CDB6DDF283675C000D34BFA /* GenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB6DDE283675C000D34BFA /* GenreCell.swift */; };
 		1CDB6DE1283675D100D34BFA /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB6DE0283675D100D34BFA /* Genre.swift */; };
+		D97FFFB9D18783974B04E8CA /* Pods_Movies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536B18D602A317AF8951DAD2 /* Pods_Movies.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,9 @@
 		1CDB6DDC28364C9700D34BFA /* Cast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
 		1CDB6DDE283675C000D34BFA /* GenreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCell.swift; sourceTree = "<group>"; };
 		1CDB6DE0283675D100D34BFA /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		200B910DFEE86648689C2AA9 /* Pods-Movies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movies.release.xcconfig"; path = "Target Support Files/Pods-Movies/Pods-Movies.release.xcconfig"; sourceTree = "<group>"; };
+		38985313770D47DF76FD005C /* Pods-Movies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movies.debug.xcconfig"; path = "Target Support Files/Pods-Movies/Pods-Movies.debug.xcconfig"; sourceTree = "<group>"; };
+		536B18D602A317AF8951DAD2 /* Pods_Movies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Movies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,17 +64,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D97FFFB9D18783974B04E8CA /* Pods_Movies.framework in Frameworks */,
+				1CBA764C285064260069BEAE /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C67AB18B2D7095138E63B13 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				536B18D602A317AF8951DAD2 /* Pods_Movies.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1C5D08E328350CE90069FC63 = {
 			isa = PBXGroup;
 			children = (
 				1C5D08EE28350CE90069FC63 /* Movies */,
 				1C5D08ED28350CE90069FC63 /* Products */,
+				BA0724270378C12E909BF65A /* Pods */,
+				0C67AB18B2D7095138E63B13 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -165,6 +182,15 @@
 			path = Others;
 			sourceTree = "<group>";
 		};
+		BA0724270378C12E909BF65A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				38985313770D47DF76FD005C /* Pods-Movies.debug.xcconfig */,
+				200B910DFEE86648689C2AA9 /* Pods-Movies.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -172,15 +198,20 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1C5D090028350CEA0069FC63 /* Build configuration list for PBXNativeTarget "Movies" */;
 			buildPhases = (
+				87B0B006B00617A4981B972C /* [CP] Check Pods Manifest.lock */,
 				1C5D08E828350CE90069FC63 /* Sources */,
 				1C5D08E928350CE90069FC63 /* Frameworks */,
 				1C5D08EA28350CE90069FC63 /* Resources */,
+				D0656457307312F0DD2E1E87 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Movies;
+			packageProductDependencies = (
+				1CBA764B285064260069BEAE /* Alamofire */,
+			);
 			productName = Movies;
 			productReference = 1C5D08EC28350CE90069FC63 /* Movies.app */;
 			productType = "com.apple.product-type.application";
@@ -209,6 +240,9 @@
 				Base,
 			);
 			mainGroup = 1C5D08E328350CE90069FC63;
+			packageReferences = (
+				1CBA764A285064260069BEAE /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 1C5D08ED28350CE90069FC63 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -232,6 +266,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		87B0B006B00617A4981B972C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Movies-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0656457307312F0DD2E1E87 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Movies/Pods-Movies-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Movies/Pods-Movies-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Movies/Pods-Movies-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1C5D08E828350CE90069FC63 /* Sources */ = {
@@ -394,6 +470,7 @@
 		};
 		1C5D090128350CEA0069FC63 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38985313770D47DF76FD005C /* Pods-Movies.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -422,6 +499,7 @@
 		};
 		1C5D090228350CEA0069FC63 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 200B910DFEE86648689C2AA9 /* Pods-Movies.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -470,6 +548,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1CBA764A285064260069BEAE /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1CBA764B285064260069BEAE /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1CBA764A285064260069BEAE /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1C5D08E428350CE90069FC63 /* Project object */;
 }

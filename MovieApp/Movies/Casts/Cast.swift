@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct CastEntity: Decodable {
+    let id: Int
+    let cast: [Cast]
+}
+
 struct Cast: Decodable {
     enum CodingKeys: String, CodingKey {
         case id
@@ -21,8 +26,23 @@ struct Cast: Decodable {
     let id: Int
     let name: String?
     let position: String?
-    let image: String?
+    let castUrl: String?
     let birthday: String?
     let biography: String?
     let birthPlace: String?
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(Int.self, forKey: .id)
+        name = try? container.decodeIfPresent(String.self, forKey: .name)
+        position = try? container.decodeIfPresent(String.self, forKey: .position)
+        birthday = try? container.decodeIfPresent(String.self, forKey: .birthday)
+        biography = try? container.decodeIfPresent(String.self, forKey:.biography)
+        birthPlace = try? container.decodeIfPresent(String.self, forKey: .birthPlace)
+        if let image = try? container.decodeIfPresent(String.self, forKey: .image) {
+            castUrl  =  "https://image.tmdb.org/t/p/w200\(image)"
+        } else {
+            castUrl = nil
+        }
+    }
 }
