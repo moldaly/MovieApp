@@ -9,11 +9,11 @@ import UIKit
 
 class CastMemberViewController: UIViewController {
 
-    @IBOutlet var actorImageView: UIImageView!
-    @IBOutlet var actorNameView: UILabel!
-    @IBOutlet var actorBirthdayView: UILabel!
-    @IBOutlet var actorActingView: UILabel!
-    @IBOutlet var actorBiographyView: UILabel!
+    @IBOutlet var castImageView: UIImageView!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var birthdayLabel: UILabel!
+    @IBOutlet var positionLabel: UILabel!
+    @IBOutlet var biographyLabel: UILabel!
     
     var cast: Cast?
     
@@ -21,11 +21,11 @@ class CastMemberViewController: UIViewController {
         super.viewDidLoad()
         if let cast = cast {
             let url = URL(string: cast.castUrl ?? "")
-            actorImageView.kf.setImage(with: url)
-            actorNameView.text = cast.name
-            actorBirthdayView.text = cast.birthday
-            actorActingView.text = cast.position
-            actorBiographyView.text = cast.biography
+            castImageView.kf.setImage(with: url)
+            nameLabel.text = cast.name
+            birthdayLabel.text = cast.birthday
+            positionLabel.text = cast.position
+            biographyLabel.text = cast.biography
         }
     }
 }

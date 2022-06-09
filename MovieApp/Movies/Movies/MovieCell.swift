@@ -10,9 +10,9 @@ import Kingfisher
 
 class MovieCell: UITableViewCell {
 
-    @IBOutlet var imageCellView: UIImageView!
-    @IBOutlet var ratingView: UILabel!
-    @IBOutlet var nameView: UILabel!
+    @IBOutlet var movieImageView: UIImageView!
+    @IBOutlet var ratingLabel: UILabel!
+    @IBOutlet var nameLabel: UILabel!
     @IBOutlet var ratingContainerView: UIView!
     
     override func awakeFromNib() {
@@ -22,9 +22,9 @@ class MovieCell: UITableViewCell {
     
     func configure(with movie: Movie) {
         let url = URL(string: movie.posterUrl ?? "")
-        imageCellView.kf.setImage(with: url)
-        nameView.text = movie.name
-        ratingView.text = "★ \(movie.rating)"
+        movieImageView.kf.setImage(with: url)
+        nameLabel.text = movie.name
+        ratingLabel.text = "★ \(movie.rating)"
         
         if movie.rating < 4 {
             ratingContainerView.backgroundColor = .systemRed

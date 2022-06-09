@@ -135,10 +135,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="imageCellView" destination="Koz-7o-QH6" id="rQZ-mC-xjF"/>
-                                            <outlet property="nameView" destination="K4K-kn-BPK" id="mHK-im-Luj"/>
+                                            <outlet property="movieImageView" destination="Koz-7o-QH6" id="HWU-mc-rfp"/>
+                                            <outlet property="nameLabel" destination="K4K-kn-BPK" id="tWj-QT-poN"/>
                                             <outlet property="ratingContainerView" destination="6lg-hr-GKL" id="TZf-PN-kJe"/>
-                                            <outlet property="ratingView" destination="6oH-N8-vMF" id="jUh-i6-Bt8"/>
+                                            <outlet property="ratingLabel" destination="6oH-N8-vMF" id="clm-S5-yle"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -160,8 +160,8 @@
                         <nil key="title"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="myCollectionView" destination="7AC-e4-ejl" id="5eF-Iy-Z7t"/>
-                        <outlet property="myTableView" destination="2aT-gE-FIF" id="qXt-dA-2Ta"/>
+                        <outlet property="collectionView" destination="7AC-e4-ejl" id="dQf-pC-kFh"/>
+                        <outlet property="tableView" destination="2aT-gE-FIF" id="gpK-ih-YIR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -292,11 +292,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="knE-Tb-kd1"/>
                     <connections>
-                        <outlet property="actorActingView" destination="v5U-61-lWw" id="wah-Tv-M68"/>
-                        <outlet property="actorBiographyView" destination="SLk-zQ-KWn" id="6J8-H4-GV2"/>
-                        <outlet property="actorBirthdayView" destination="da1-w6-adU" id="GgD-K6-Xg2"/>
-                        <outlet property="actorImageView" destination="6wd-DF-pLW" id="U3v-Vw-YVW"/>
-                        <outlet property="actorNameView" destination="Y6F-FM-hdM" id="9Ya-Nj-YZm"/>
+                        <outlet property="biographyLabel" destination="SLk-zQ-KWn" id="dET-F0-vYK"/>
+                        <outlet property="birthdayLabel" destination="da1-w6-adU" id="vyM-xU-AjJ"/>
+                        <outlet property="castImageView" destination="6wd-DF-pLW" id="omP-CP-pSX"/>
+                        <outlet property="nameLabel" destination="Y6F-FM-hdM" id="iWW-3g-oS8"/>
+                        <outlet property="positionLabel" destination="v5U-61-lWw" id="6B3-gR-9oh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ACX-m3-exl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -360,7 +360,7 @@
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="myCastCell" id="Ga6-He-aPC" customClass="CastCell" customModule="Movies" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CastCell" id="Ga6-He-aPC" customClass="CastCell" customModule="Movies" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="14.666666666666666" width="116" height="171"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="FtS-Qv-8Xj">
@@ -379,8 +379,8 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Yh-2v-MkS">
-                                                                    <rect key="frame" x="14" y="96" width="72" height="20.333333333333329"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Yh-2v-MkS">
+                                                                    <rect key="frame" x="14" y="96" width="90" height="20.333333333333329"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -397,20 +397,20 @@
                                                                 <constraint firstItem="vKu-5B-elg" firstAttribute="leading" secondItem="FtS-Qv-8Xj" secondAttribute="leading" constant="14" id="2YM-ri-ynk"/>
                                                                 <constraint firstItem="1Yh-2v-MkS" firstAttribute="leading" secondItem="vKu-5B-elg" secondAttribute="leading" id="69Y-Bk-lfW"/>
                                                                 <constraint firstItem="rkk-GM-xJY" firstAttribute="trailing" secondItem="vKu-5B-elg" secondAttribute="trailing" id="AgP-GZ-lrP"/>
-                                                                <constraint firstItem="rkk-GM-xJY" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1Yh-2v-MkS" secondAttribute="bottom" constant="4" id="NTs-E2-EU9"/>
+                                                                <constraint firstAttribute="bottom" secondItem="rkk-GM-xJY" secondAttribute="bottom" constant="4" id="HNX-bQ-kRs"/>
                                                                 <constraint firstItem="rkk-GM-xJY" firstAttribute="leading" secondItem="vKu-5B-elg" secondAttribute="leading" id="Sqi-nQ-hpN"/>
-                                                                <constraint firstAttribute="trailing" secondItem="1Yh-2v-MkS" secondAttribute="trailing" constant="30" id="WVe-q8-WKK"/>
+                                                                <constraint firstAttribute="trailing" secondItem="1Yh-2v-MkS" secondAttribute="trailing" constant="12" id="WVe-q8-WKK"/>
                                                                 <constraint firstItem="1Yh-2v-MkS" firstAttribute="top" secondItem="vKu-5B-elg" secondAttribute="bottom" constant="4" id="Wns-XS-1Il"/>
-                                                                <constraint firstAttribute="bottom" secondItem="rkk-GM-xJY" secondAttribute="bottom" constant="4" id="cUy-sB-esm"/>
                                                                 <constraint firstAttribute="trailing" secondItem="vKu-5B-elg" secondAttribute="trailing" constant="14" id="e9a-Wv-Gqx"/>
                                                                 <constraint firstItem="vKu-5B-elg" firstAttribute="top" secondItem="FtS-Qv-8Xj" secondAttribute="top" constant="4" id="gTO-6c-DB3"/>
+                                                                <constraint firstItem="rkk-GM-xJY" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1Yh-2v-MkS" secondAttribute="bottom" constant="4" id="vjR-V1-i6q"/>
                                                             </constraints>
                                                         </collectionViewCellContentView>
                                                         <size key="customSize" width="116" height="171"/>
                                                         <connections>
-                                                            <outlet property="imageView" destination="vKu-5B-elg" id="kS6-Nn-Sda"/>
-                                                            <outlet property="nameView" destination="1Yh-2v-MkS" id="kju-2Y-NMG"/>
-                                                            <outlet property="positonView" destination="rkk-GM-xJY" id="l9X-XP-xAd"/>
+                                                            <outlet property="imageView" destination="vKu-5B-elg" id="Uw8-mG-po8"/>
+                                                            <outlet property="nameLabel" destination="1Yh-2v-MkS" id="9t0-0K-YOA"/>
+                                                            <outlet property="positonLAbel" destination="rkk-GM-xJY" id="JGg-WO-TSZ"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
@@ -464,16 +464,16 @@
                     </view>
                     <navigationItem key="navigationItem" id="2d6-pa-3FV"/>
                     <connections>
-                        <outlet property="dateView" destination="aX9-7J-f9x" id="rMh-US-Nas"/>
-                        <outlet property="descriptionView" destination="kjI-cp-DOV" id="4dn-6D-uvG"/>
+                        <outlet property="collectioView" destination="Bk3-Jf-5rt" id="fWJ-on-3jL"/>
+                        <outlet property="dateLabel" destination="aX9-7J-f9x" id="QTW-XI-Miz"/>
+                        <outlet property="descriptionLabel" destination="kjI-cp-DOV" id="YQh-DW-eBh"/>
                         <outlet property="imageView" destination="VBd-Zz-o5y" id="pza-Io-0mL"/>
-                        <outlet property="myCollectioView" destination="Bk3-Jf-5rt" id="bgI-ta-IXQ"/>
-                        <outlet property="titleView" destination="Xzu-OM-Uwo" id="g4Y-vt-5tB"/>
+                        <outlet property="titleLabel" destination="Xzu-OM-Uwo" id="e50-cH-gsw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j75-gC-Z1e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3364" y="-557"/>
+            <point key="canvasLocation" x="3363.0841121495323" y="-557.23542116630676"/>
         </scene>
         <!--MainViewController-->
         <scene sceneID="zYf-Ak-iYN">

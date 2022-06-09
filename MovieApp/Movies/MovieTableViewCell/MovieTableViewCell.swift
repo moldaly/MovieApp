@@ -8,7 +8,7 @@
 import UIKit
 
 typealias CallBack = () -> Void
-typealias CollectionViewMovie = (Int, Int) -> Void
+typealias CollectionViewMovie = (Int) -> Void
 
 class MovieTableViewCell: UITableViewCell {
     
@@ -20,7 +20,6 @@ class MovieTableViewCell: UITableViewCell {
         onAllMoviesButtonDidTap?()
     }
     
-    var sectionIndex: Int?
     var onAllMoviesButtonDidTap: CallBack?
     var onMovieCollectionViewDidTap: CollectionViewMovie?
     
@@ -67,6 +66,6 @@ extension MovieTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        onMovieCollectionViewDidTap?(sectionIndex ?? 0, indexPath.row)
+        onMovieCollectionViewDidTap?(indexPath.row)
     }
 }

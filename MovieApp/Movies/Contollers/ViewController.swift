@@ -10,25 +10,24 @@ import Kingfisher
 
 class ViewController: UIViewController {
     
-    private var networkManager = NetworkManager.shared
+    private var networkManager = NetworkManagerAF.shared
     
-    @IBOutlet var myTableView: UITableView!
-    @IBOutlet var myCollectionView: UICollectionView!
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var collectionView: UICollectionView!
     
 //    var movies1: [Movie] = []
     var movies: [Movie] = []
     var genres: [Genre] = []
-    var casts: [Cast] = []
     
     static var identifier = "ViewController"
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        myTableView.delegate = self
-        myTableView.dataSource = self
-        myCollectionView.dataSource = self
-        myCollectionView.delegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
+        collectionView.dataSource = self
+        collectionView.delegate = self
         title = "Movies"
     }
 }
@@ -51,15 +50,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = storyboard?.instantiateViewController(withIdentifier: "DescriptionViewController") as! DescriptionViewController
         
         vc.movie = movies[indexPath.row]
-        
-//        networkManager.loadCastByMovieID(id: movies[indexPath.row].id) { [weak self] casts in
-//            DispatchQueue.main.async {
-//                self?.casts = casts
-//            }
-//        }
-
-        vc.casts = casts
-        
+        vc.movieId = movies[indexPath.row].id
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -92,11 +83,5 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 //    }
 }
 
-//extension ViewController {
-//    private func loadCasts(id: Int) {
-//        networkManager.loadCastByMovieID(id: id){ [weak self] casts in
-//            self?.casts = casts
-//        }
-//    }
-//}
+
 

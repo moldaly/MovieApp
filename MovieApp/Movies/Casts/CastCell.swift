@@ -11,15 +11,18 @@ import Kingfisher
 class CastCell: UICollectionViewCell {
     
     @IBOutlet var imageView: UIImageView!
-    @IBOutlet var nameView: UILabel!
-    @IBOutlet var positonView: UILabel!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var positonLAbel: UILabel!
     
     var onCastsCollectionViewDidTap: CallBack?
     
     func setUp(with cast: Cast) {
-        let url = URL(string: cast.castUrl ?? "")
-        imageView.kf.setImage(with: url)
-        nameView.text = cast.name
-        positonView.text = cast.position
+        if let castUrl = cast.castUrl {
+            let url = URL(string: castUrl)
+            imageView.kf.setImage(with: url)
+        }
+        nameLabel.text = cast.name
+        positonLAbel.text = cast.position
+        
     }
 }
