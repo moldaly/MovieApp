@@ -67,11 +67,6 @@ class NetworkManagerAF {
         }
     }
     
-    func loadCastByMovieID(id: Int, completion: @escaping ([Cast]) -> Void ) {
-        loadCast(path: "/3/movie/\(id)/credits") { casts in
-            completion(casts)
-        }
-    }
     
     private func loadMovies(path: String, completion: @escaping ([Movie]) -> Void) {
         var components = urlComponents
@@ -98,6 +93,47 @@ class NetworkManagerAF {
             }
     }
     
+    func loadCastIDByMovieID(id: Int, completion: @escaping ((Int)) -> Void ) {
+        loadCastID(path: "/3/movie/\(id)/credits") { id in
+            completion(id)
+        }
+    }
+    
+
+    
+    private func loadCastID(path: String, completion: @escaping (Int) -> Void) {
+        var components = urlComponents
+        components.path = path
+        
+        guard let requestUrl = components.url else {
+            return
+        }
+        AF.request(requestUrl).responseJSON { response in
+            guard let data = response.data else {
+                    print("Error: Did not receive data")
+                    return
+                }
+                do {
+                    let castIDEntity = try JSONDecoder().decode(CastIDEntity.self, from: data)
+                    DispatchQueue.main.async {
+                        completion(castIDEntity.id)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        completion(0)
+                    }
+                }
+            }
+    }
+    
+
+    func loadCastInfoByCastID(id: Int, completion: @escaping ([Cast]) -> Void ) {
+        loadCast(path: "/3/person/\(id)") { casts in
+            completion(casts)
+        }
+    }
+
+    
     private func loadCast(path: String, completion: @escaping ([Cast]) -> Void) {
         var components = urlComponents
         components.path = path
@@ -122,7 +158,4 @@ class NetworkManagerAF {
                 }
             }
     }
-    
-
-
 }

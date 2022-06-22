@@ -16,6 +16,12 @@ class MainViewController: UIViewController {
     
     var sectionNames: [String] = ["Today at the cinema", "Soon at the cinema", "Trending movies"]
     
+//    struct MoviesArray {
+//        var todayMovies: [String?]
+//        var soonMovie: [String?]
+//        var trendyMovie: [String?]
+//    }
+    
     lazy var sectionMovies: [[Movie]] = [[],[],[]] {
         didSet {
             tableView.reloadData()
@@ -47,9 +53,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifier, for: indexPath) as! MovieTableViewCell
         
-        
-            cell.configure(with: (sectionNames[indexPath.row], movies: sectionMovies[indexPath.row], genres: genres))
-    
+        cell.configure(with: (sectionNames[indexPath.row], movies: sectionMovies[indexPath.row], genres: genres))
 
         cell.onAllMoviesButtonDidTap = { [weak self ] in
             guard let self = self else { return }

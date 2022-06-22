@@ -14,8 +14,6 @@ class CastCell: UICollectionViewCell {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var positonLAbel: UILabel!
     
-    var onCastsCollectionViewDidTap: CallBack?
-    
     func setUp(with cast: Cast) {
         if let castUrl = cast.castUrl {
             let url = URL(string: castUrl)

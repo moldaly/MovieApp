@@ -142,8 +142,8 @@
 				1C5D08F328350CE90069FC63 /* ViewController.swift */,
 				1CDB6DD828361FD600D34BFA /* DescriptionViewController.swift */,
 				1C761875283CCDC200A17F60 /* CastMemberViewController.swift */,
-				1C3620BF284399B20009FAF3 /* NetworkManager.swift */,
 				1CD1FDAA2850BB49008D294C /* NetworkManagerAF.swift */,
+				1C3620BF284399B20009FAF3 /* NetworkManager.swift */,
 			);
 			path = Contollers;
 			sourceTree = "<group>";

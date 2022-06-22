@@ -19,6 +19,8 @@ class DescriptionViewController: UIViewController {
     private var networkManager = NetworkManagerAF.shared
     
     var movieId: Int?
+    var castId: Int?
+    
     var casts: [Cast] = []
     {
         didSet {
@@ -42,7 +44,12 @@ class DescriptionViewController: UIViewController {
         }
         collectioView.dataSource = self
         collectioView.delegate = self
-        loadCasts(id: movieId!)
+        loadCastID(id: movieId!)
+        if let id = castId {
+            loadCast(id: id)
+            print("my id \(id)")
+        }
+        
         
     }
 }
@@ -67,8 +74,14 @@ extension DescriptionViewController: UICollectionViewDataSource, UICollectionVie
 }
 
 extension DescriptionViewController {
-    private func loadCasts(id: Int) {
-        networkManager.loadCastByMovieID(id: id){ [weak self] casts in
+    private func loadCastID(id: Int) {
+        networkManager.loadCastIDByMovieID(id: id){ [weak self] id in
+            self?.castId = id
+        }
+    }
+    
+    private func loadCast(id: Int) {
+        networkManager.loadCastInfoByCastID(id: id){ [weak self] casts in
             self?.casts = casts
         }
     }

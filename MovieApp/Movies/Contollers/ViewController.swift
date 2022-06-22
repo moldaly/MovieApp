@@ -72,14 +72,12 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     }
 //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        for item in movies.indices {
-//            if item == "genreIds" {
-//                for index in item {
-//                    if
-//                }
+//            if item == "" {
+//
 //            }
 //        }
 //        myTableView.reloadData()
-//        
+//
 //    }
 }
 
