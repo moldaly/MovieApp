@@ -8,18 +8,6 @@
 import UIKit
 import MapKit
 
-//class CustomPin: NSObject, MKAnnotation {
-//    var coordinate: CLLocationCoordinate2D
-//    var title: String?
-//    var subtitle: String?
-//
-//    init(pinTitle: String, PinSubtitle: String, location: CLLocationCoordinate2D) {
-//        self.title = pinTitle
-//        self.coordinate = location
-//        self.subtitle = PinSubtitle
-//    }
-//}
-
 class MainViewController: UIViewController {
     
     var routeCoordinates: [CLLocation] = []
@@ -101,13 +89,6 @@ class MainViewController: UIViewController {
     
     
     fileprivate func longPress() {
-        let alert = UIAlertController(title: "New student", message: "Add new student", preferredStyle: .alert)
-                alert.addTextField { (textField:UITextField) in
-                    textField.placeholder = "Name"
-                }
-                alert.addTextField { (textField:UITextField) in
-                    textField.placeholder = "Gpa"
-                }
         
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
         longPressRecognizer.minimumPressDuration = 0.5
@@ -117,12 +98,13 @@ class MainViewController: UIViewController {
     @objc func handleLongPress(gestureReconizer: UILongPressGestureRecognizer) {
         if gestureReconizer.state != UIGestureRecognizer.State.ended {
             
-        let alert = UIAlertController(title: "New student", message: "Add new student", preferredStyle: .alert)
+        // Alert to add place
+        let alert = UIAlertController(title: "Add place", message: "Fill all the fields", preferredStyle: .alert)
                 alert.addTextField { (textField:UITextField) in
-                    textField.placeholder = "Name"
+                    textField.placeholder = "Enter title"
                 }
                 alert.addTextField { (textField:UITextField) in
-                    textField.placeholder = "Gpa"
+                    textField.placeholder = "Enter subtitle"
                 }
             alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [self] (action:UIAlertAction) in
                         guard let textField =  alert.textFields?.first else {
@@ -131,47 +113,44 @@ class MainViewController: UIViewController {
                         guard let textField2 =  alert.textFields?[1] else {
                             return
                         }
-                        if let gpa = Double(textField2.text!){
-                            print(gpa)
-                            saveStudent(textField.text!, gpa)
+                        if let subtitle = Double(textField2.text!){
+                            print(subtitle)
+                            savePlace(textField.text!, subtitle)
                         }
                     }))
-                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                     
                     self.present(alert, animated: true, completion: nil)
         
+        // Add pin on the map
         let touchLocation = gestureReconizer.location(in: mapView)
         let locationCoordinate = mapView.convert(touchLocation,toCoordinateFrom: mapView)
             
         let pin = MKPointAnnotation()
         pin.coordinate = CLLocationCoordinate2D(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude)
+        
         mapView.addAnnotation(pin)
-
         mapView.delegate = self
-            
-        print("Tapped at lat: \(locationCoordinate.latitude) long: \(locationCoordinate.longitude)")
         
         return
       }
-        
         if gestureReconizer.state != UIGestureRecognizer.State.began { return }
     }
     
-    func saveStudent(_ name: String, _ gpa: Double){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    func savePlace(_ name: String, _ gpa: Double){
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
 //        let managedContext = appDelegate.persistentContainer.viewContext
 //        let entity = NSEntityDescription.entity(forEntityName: "Student", in: managedContext)!
 //        let student = NSManagedObject(entity: entity, insertInto: managedContext)
 //        student.setValue(name, forKeyPath: "name")
 //        student.setValue(gpa, forKeyPath: "gpa")
         
-        do {
+//        do {
 //          try managedContext.save()
-//            students.append(student)
+//            places.append(student)
             tableView.reloadData()
-        } catch let error as NSError {
-          print("Could not save. \(error), \(error.userInfo)")
-        }
+//        } catch let error as NSError {
+//          print("Could not save. \(error), \(error.userInfo)")
+//        }
     }
     
     func setMapConstraints() {
@@ -282,7 +261,7 @@ extension MainViewController: MKMapViewDelegate {
             annotationView?.animatesDrop = true
             
 //            let calloutButton = CustomButton(type: .detailDisclosure)
-            
+//
 //            guard let title = annotation.title,
 //                  let subtitle = annotation.subtitle else { return nil }
 //
@@ -293,7 +272,7 @@ extension MainViewController: MKMapViewDelegate {
 //            calloutButton.subtitle = subtitile
 //
 //            calloutButton.addTarget(self, action: #selector(infoButtonTapped(_:)), for: .touchUpInside)
-//
+
 //            annotationView!.rightCalloutAccessoryView = calloutButton
             annotationView!.sizeToFit()
         }
