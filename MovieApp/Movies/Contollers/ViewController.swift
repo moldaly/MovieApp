@@ -15,8 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var collectionView: UICollectionView!
     
-//    var movies1: [Movie] = []
-    var movies: [Movie] = []
+    var allMovies: [Movie] = []
+    var moviesForTableView: [Movie] = []
     var genres: [Genre] = []
     
     static var identifier = "ViewController"
@@ -34,14 +34,14 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
+        return moviesForTableView.count
 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") as! MovieCell
         
-        cell.configure(with: movies[indexPath.row])
+        cell.configure(with: moviesForTableView[indexPath.row])
         
         return cell
     }
@@ -49,8 +49,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "DescriptionViewController") as! DescriptionViewController
         
-        vc.movie = movies[indexPath.row]
-        vc.movieId = movies[indexPath.row].id
+//        vc.movie = moviesForTableView[indexPath.row]
+        vc.movieId = moviesForTableView[indexPath.row].id
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -70,15 +70,19 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         return cell
         
     }
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        for item in movies.indices {
-//            if item == "" {
-//
-//            }
-//        }
-//        myTableView.reloadData()
-//
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let filteredMovies = allMovies.filter { filteredMovies in
+            for item in filteredMovies.genreIds {
+                if item == genres[indexPath.row].id {
+                    print("my genre is \(item) and \(genres[indexPath.row].id)")
+                    return true
+                }
+            }
+            return false
+        }
+        moviesForTableView = filteredMovies
+        tableView.reloadData()
+    }
 }
 
 

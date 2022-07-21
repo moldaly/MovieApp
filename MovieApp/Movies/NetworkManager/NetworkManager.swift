@@ -82,11 +82,7 @@ class NetworkManager {
         }
     }
     
-    func loadCastByMovieID(id: Int, completion: @escaping ([Cast]) -> Void ) {
-        loadCast(path: "/movie/\(id)/credits") { casts in
-            completion(casts)
-        }
-    }
+    
     
     private func loadMovies(path: String, completion: @escaping ([Movie]) -> Void) {
         var components = urlComponents
@@ -122,40 +118,43 @@ class NetworkManager {
         task.resume()
     }
     
-    private func loadCast(path: String, completion: @escaping ([Cast]) -> Void) {
-        var components = urlComponents
-        components.path = path
-        
-        guard let requestUrl = components.url else {
-            return
-        }
-            let task = session.dataTask(with: requestUrl) { data, response, error in
-                guard error == nil else {
-                    print("Error: error calling GET")
-                    return
-                }
-                guard let data = data else {
-                    print("Error: Did not receive data")
-                    return
-                }
-                guard let response = response as? HTTPURLResponse, (200 ..< 300) ~= response.statusCode else {
-                    print("Error: HTTP request failed")
-                    return
-                }
-                do {
-                    let castEntity = try JSONDecoder().decode(CastEntity.self, from: data)
-                    DispatchQueue.main.async {
-                        completion(castEntity.cast)
-                    }
-                } catch {
-                    DispatchQueue.main.async {
-                        completion([])
-                    }
-                }
-            }
-        task.resume()
-    }
-    
-
-
+//    func loadCastByMovieID(id: Int, completion: @escaping ([Cast]) -> Void ) {
+//        loadCast(path: "/movie/\(id)/credits") { casts in
+//            completion(casts)
+//        }
+//    }
+//
+//    private func loadCast(path: String, completion: @escaping ([Cast]) -> Void) {
+//        var components = urlComponents
+//        components.path = path
+//
+//        guard let requestUrl = components.url else {
+//            return
+//        }
+//            let task = session.dataTask(with: requestUrl) { data, response, error in
+//                guard error == nil else {
+//                    print("Error: error calling GET")
+//                    return
+//                }
+//                guard let data = data else {
+//                    print("Error: Did not receive data")
+//                    return
+//                }
+//                guard let response = response as? HTTPURLResponse, (200 ..< 300) ~= response.statusCode else {
+//                    print("Error: HTTP request failed")
+//                    return
+//                }
+//                do {
+//                    let castEntity = try JSONDecoder().decode(CastEntity.self, from: data)
+//                    DispatchQueue.main.async {
+//                        completion(castEntity.cast)
+//                    }
+//                } catch {
+//                    DispatchQueue.main.async {
+//                        completion([])
+//                    }
+//                }
+//            }
+//        task.resume()
+//    }
 }

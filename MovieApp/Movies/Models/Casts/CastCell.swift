@@ -14,13 +14,12 @@ class CastCell: UICollectionViewCell {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var positonLAbel: UILabel!
     
-    func setUp(with cast: Cast) {
+    func setUp(with cast: CastId) {
         if let castUrl = cast.castUrl {
             let url = URL(string: castUrl)
             imageView.kf.setImage(with: url)
         }
         nameLabel.text = cast.name
         positonLAbel.text = cast.position
-        
     }
 }

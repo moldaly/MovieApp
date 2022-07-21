@@ -58,7 +58,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.onAllMoviesButtonDidTap = { [weak self ] in
             guard let self = self else { return }
             let vc = self.storyboard?.instantiateViewController(withIdentifier: ViewController.identifier) as! ViewController
-            vc.movies = self.sectionMovies[indexPath.row]
+            vc.allMovies = self.sectionMovies[indexPath.row]
+            vc.moviesForTableView = self.sectionMovies[indexPath.row]
             vc.genres = self.genres
             
             self.navigationController?.pushViewController(vc, animated: true)
@@ -67,7 +68,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.onMovieCollectionViewDidTap = { [weak self ]  movieIndex in
             guard let self = self else { return }
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "DescriptionViewController") as! DescriptionViewController
-            vc.movie =  self.sectionMovies[indexPath.row][movieIndex]
+//            vc.movieDetail =  self.sectionMovies[indexPath.row][movieIndex]
             vc.movieId = self.sectionMovies[indexPath.row][movieIndex].id
             self.navigationController?.pushViewController(vc, animated: true)
         }

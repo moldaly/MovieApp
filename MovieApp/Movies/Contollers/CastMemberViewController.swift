@@ -15,17 +15,29 @@ class CastMemberViewController: UIViewController {
     @IBOutlet var positionLabel: UILabel!
     @IBOutlet var biographyLabel: UILabel!
     
+    private var networkManager = NetworkManagerAF.shared
+    
     var cast: Cast?
+    var castId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let cast = cast {
-            let url = URL(string: cast.castUrl ?? "")
-            castImageView.kf.setImage(with: url)
-            nameLabel.text = cast.name
-            birthdayLabel.text = cast.birthday
-            positionLabel.text = cast.position
-            biographyLabel.text = cast.biography
+        
+        loadCastInfoByCastID(id: castId!)
+    }
+}
+
+extension CastMemberViewController {
+    private func loadCastInfoByCastID(id: Int) {
+        networkManager.loadCastDetail(id: id){ [weak self] castDescription in
+            
+            let url = URL(string: castDescription.castUrl ?? "")
+            self?.castImageView.kf.setImage(with: url)
+            self?.nameLabel.text = castDescription.name
+            self?.positionLabel.text = castDescription.position
+            
+            self?.birthdayLabel.text = "\(castDescription.birthday), \(castDescription.birthPlace)"
+            self?.biographyLabel.text = castDescription.biography
         }
     }
 }

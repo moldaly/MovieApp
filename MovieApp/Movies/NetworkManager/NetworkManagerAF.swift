@@ -25,6 +25,7 @@ class NetworkManagerAF {
     
     
     func loadGenres(completion: @escaping ([Genre]) -> Void) {
+        
         var components = urlComponents
         components.path = "/3/genre/movie/list"
         
@@ -32,6 +33,7 @@ class NetworkManagerAF {
             return
         }
         AF.request(requestUrl).responseJSON { response in
+            
             guard let data = response.data else {
                 print("Error: Did not receive data")
                 return
@@ -68,7 +70,7 @@ class NetworkManagerAF {
     }
     
     
-    private func loadMovies(path: String, completion: @escaping ([Movie]) -> Void) {
+    func loadMovies(path: String, completion: @escaping ([Movie]) -> Void) {
         var components = urlComponents
         components.path = path
         
@@ -93,17 +95,34 @@ class NetworkManagerAF {
             }
     }
     
-    func loadCastIDByMovieID(id: Int, completion: @escaping ((Int)) -> Void ) {
-        loadCastID(path: "/3/movie/\(id)/credits") { id in
-            completion(id)
+    func loadMovieDetail(id: Int, completion: @escaping (MovieDetail) -> Void) {
+        var components = urlComponents
+        components.path = "/3/movie/\(id)"
+        
+        guard let requestUrl = components.url else {
+            return
         }
+        AF.request(requestUrl).responseJSON { response in
+            guard let data = response.data else {
+                    print("Error: Did not receive data")
+                    return
+                }
+                do {
+                    let movieDetail = try JSONDecoder().decode(MovieDetail.self, from: data)
+                    DispatchQueue.main.async {
+                        completion(movieDetail)
+                        print("my movieDetail is \(movieDetail)")
+                    }
+                } catch {
+                    print("No json!")
+                }
+            }
     }
     
 
-    
-    private func loadCastID(path: String, completion: @escaping (Int) -> Void) {
+    func loadCasts(id: Int, completion: @escaping ([CastId]) -> Void) {
         var components = urlComponents
-        components.path = path
+        components.path = "/3/movie/\(id)/credits"
         
         guard let requestUrl = components.url else {
             return
@@ -116,40 +135,7 @@ class NetworkManagerAF {
                 do {
                     let castIDEntity = try JSONDecoder().decode(CastIDEntity.self, from: data)
                     DispatchQueue.main.async {
-                        completion(castIDEntity.id)
-                    }
-                } catch {
-                    DispatchQueue.main.async {
-                        completion(0)
-                    }
-                }
-            }
-    }
-    
-
-    func loadCastInfoByCastID(id: Int, completion: @escaping ([Cast]) -> Void ) {
-        loadCast(path: "/3/person/\(id)") { casts in
-            completion(casts)
-        }
-    }
-
-    
-    private func loadCast(path: String, completion: @escaping ([Cast]) -> Void) {
-        var components = urlComponents
-        components.path = path
-        
-        guard let requestUrl = components.url else {
-            return
-        }
-        AF.request(requestUrl).responseJSON { response in
-            guard let data = response.data else {
-                    print("Error: Did not receive data")
-                    return
-                }
-                do {
-                    let castEntity = try JSONDecoder().decode(CastEntity.self, from: data)
-                    DispatchQueue.main.async {
-                        completion(castEntity.cast)
+                        completion(castIDEntity.cast)
                     }
                 } catch {
                     DispatchQueue.main.async {
@@ -158,4 +144,28 @@ class NetworkManagerAF {
                 }
             }
     }
+
+    func loadCastDetail(id: Int, completion: @escaping (Cast) -> Void) {
+    var components = urlComponents
+    components.path = "/3/person/\(id)"
+
+    guard let requestUrl = components.url else {
+        return
+    }
+    AF.request(requestUrl).responseJSON { response in
+        guard let data = response.data else {
+                print("Error: Did not receive data")
+                return
+            }
+            do {
+                let castEntity = try JSONDecoder().decode(Cast.self, from: data)
+                DispatchQueue.main.async {
+                    completion(castEntity)
+                    print("my cast entity is \(castEntity)")
+                }
+            } catch {
+                print("No json!")
+            }
+        }
+}
 }
