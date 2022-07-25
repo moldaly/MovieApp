@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieDetail: Decodable {
+struct MovieDetailsEntity: Decodable {
     enum CodingKeys: String, CodingKey {
         case name = "original_title"
         case date = "release_date"

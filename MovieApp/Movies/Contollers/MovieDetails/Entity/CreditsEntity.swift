@@ -1,5 +1,5 @@
 //
-//  Casts.swift
+//  CreditsEntity.swift
 //  Movies
 //
 //  Created by Aida Moldaly on 19.05.2022.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct CastIDEntity: Decodable {
-    let cast: [CastId]
+struct CreditsEntity: Decodable {
+    let cast: [Cast]
 }
 
-struct CastId: Decodable {
+struct Cast: Decodable {
     enum CodingKeys: String, CodingKey {
         case id
         case name
@@ -24,7 +24,6 @@ struct CastId: Decodable {
     let position: String
     let castUrl: String?
 
-    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(Int.self, forKey: .id)

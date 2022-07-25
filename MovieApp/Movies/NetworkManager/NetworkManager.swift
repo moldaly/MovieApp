@@ -119,8 +119,8 @@ class NetworkManager {
     }
     
 //    func loadCastByMovieID(id: Int, completion: @escaping ([Cast]) -> Void ) {
-//        loadCast(path: "/movie/\(id)/credits") { casts in
-//            completion(casts)
+//        loadCast(path: "/movie/\(id)/credits") { cast in
+//            completion(cast)
 //        }
 //    }
 //

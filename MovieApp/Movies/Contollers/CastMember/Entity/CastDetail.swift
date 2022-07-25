@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Cast: Decodable {
+struct CastDetail: Decodable {
     enum CodingKeys: String, CodingKey {
         case name
         case position = "known_for_department"

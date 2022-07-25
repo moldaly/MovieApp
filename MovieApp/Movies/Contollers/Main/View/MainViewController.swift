@@ -57,20 +57,26 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
         cell.onAllMoviesButtonDidTap = { [weak self ] in
             guard let self = self else { return }
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: ViewController.identifier) as! ViewController
-            vc.allMovies = self.sectionMovies[indexPath.row]
-            vc.moviesForTableView = self.sectionMovies[indexPath.row]
-            vc.genres = self.genres
             
-            self.navigationController?.pushViewController(vc, animated: true)
+            let viewController = MovieListModuleAssembly().assemle() { [weak self] input in
+                
+                guard let self = self else { return }
+                input.configureMovie(with: self.sectionMovies[indexPath.row])
+                input.configureGenre(with: self.genres)
+                
+            }
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
         
         cell.onMovieCollectionViewDidTap = { [weak self ]  movieIndex in
             guard let self = self else { return }
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "DescriptionViewController") as! DescriptionViewController
-//            vc.movieDetail =  self.sectionMovies[indexPath.row][movieIndex]
-            vc.movieId = self.sectionMovies[indexPath.row][movieIndex].id
-            self.navigationController?.pushViewController(vc, animated: true)
+            // Это логика должна быть в MaunMovieRouter
+            let viewController = MovieDetailsModuleAssembly().assemle() { [weak self] input in
+                
+                guard let self = self else { return }
+                input.configure(with: self.sectionMovies[indexPath.row][movieIndex].id)
+            }
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
         
         return cell

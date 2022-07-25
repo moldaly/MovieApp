@@ -8,6 +8,10 @@
 import Foundation
 import Alamofire
 
+protocol Networkable {
+    func network()
+}
+
 class NetworkManagerAF {
     private let API_KEY = "e516e695b99f3043f08979ed2241b3db"
     
@@ -95,7 +99,7 @@ class NetworkManagerAF {
             }
     }
     
-    func loadMovieDetail(id: Int, completion: @escaping (MovieDetail) -> Void) {
+    func loadMovieDetail(id: Int, completion: @escaping (MovieDetailsEntity) -> Void) {
         var components = urlComponents
         components.path = "/3/movie/\(id)"
         
@@ -108,7 +112,7 @@ class NetworkManagerAF {
                     return
                 }
                 do {
-                    let movieDetail = try JSONDecoder().decode(MovieDetail.self, from: data)
+                    let movieDetail = try JSONDecoder().decode(MovieDetailsEntity.self, from: data)
                     DispatchQueue.main.async {
                         completion(movieDetail)
                         print("my movieDetail is \(movieDetail)")
@@ -120,7 +124,7 @@ class NetworkManagerAF {
     }
     
 
-    func loadCasts(id: Int, completion: @escaping ([CastId]) -> Void) {
+    func loadCasts(id: Int, completion: @escaping ([Cast]) -> Void) {
         var components = urlComponents
         components.path = "/3/movie/\(id)/credits"
         
@@ -133,7 +137,7 @@ class NetworkManagerAF {
                     return
                 }
                 do {
-                    let castIDEntity = try JSONDecoder().decode(CastIDEntity.self, from: data)
+                    let castIDEntity = try JSONDecoder().decode(CreditsEntity.self, from: data)
                     DispatchQueue.main.async {
                         completion(castIDEntity.cast)
                     }
@@ -145,7 +149,7 @@ class NetworkManagerAF {
             }
     }
 
-    func loadCastDetail(id: Int, completion: @escaping (Cast) -> Void) {
+    func loadCastDetail(id: Int, completion: @escaping (CastDetail) -> Void) {
     var components = urlComponents
     components.path = "/3/person/\(id)"
 
@@ -158,7 +162,7 @@ class NetworkManagerAF {
                 return
             }
             do {
-                let castEntity = try JSONDecoder().decode(Cast.self, from: data)
+                let castEntity = try JSONDecoder().decode(CastDetail.self, from: data)
                 DispatchQueue.main.async {
                     completion(castEntity)
                     print("my cast entity is \(castEntity)")
