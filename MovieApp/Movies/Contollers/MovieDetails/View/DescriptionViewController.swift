@@ -37,7 +37,7 @@ class DescriptionViewController: UIViewController {
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
     
-    var movieDetail: MovieDetailsEntity?
+//    var movieDetail: MovieDetailsEntity?
     
     override func viewDidLoad() {
         super.viewDidLoad()
