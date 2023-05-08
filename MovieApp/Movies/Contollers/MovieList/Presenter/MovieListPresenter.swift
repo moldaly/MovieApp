@@ -2,7 +2,7 @@
 //  MovieListPresenter.swift
 //  Movies
 //
-//  Created by Aida Moldaly on 25.07.2022.
+//  Created by tamzimun on 25.07.2022.
 //
 
 import Foundation

@@ -2,7 +2,7 @@
 //  main.swift
 //  Staff
 //
-//  Created by Aida Moldaly on 03.05.2022.
+//  Created by tamzimun on 03.05.2022.
 //
 
 let input = readLine()!.split(separator: ",")

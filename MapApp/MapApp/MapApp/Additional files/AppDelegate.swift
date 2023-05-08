@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  MapApp
 //
-//  Created by Aida Moldaly on 17.06.2022.
+//  Created by tamzimun on 17.06.2022.
 //
 
 import UIKit

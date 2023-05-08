@@ -2,7 +2,7 @@
 //  main.swift
 //  atatat
 //
-//  Created by Aida Moldaly on 03.05.2022.
+//  Created by tamzimun on 03.05.2022.
 //
 
 import Foundation

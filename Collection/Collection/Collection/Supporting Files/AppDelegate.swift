@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Collection
 //
-//  Created by Olzhas Seiilkhanov on 12.05.2022.
+//  Created by tamzimun on 12.05.2022.
 //
 
 import UIKit

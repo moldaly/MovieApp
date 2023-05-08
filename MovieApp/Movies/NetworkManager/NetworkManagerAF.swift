@@ -2,7 +2,7 @@
 //  NetworkManagerAL.swift
 //  Movies
 //
-//  Created by Aida Moldaly on 08.06.2022.
+//  Created by tamzimun on 08.06.2022.
 //
 
 import Foundation

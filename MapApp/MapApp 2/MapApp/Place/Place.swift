@@ -2,7 +2,7 @@
 //  Address.swift
 //  MapApp
 //
-//  Created by Aida Moldaly on 21.06.2022.
+//  Created by tamzimun on 21.06.2022.
 //
 
 import Foundation

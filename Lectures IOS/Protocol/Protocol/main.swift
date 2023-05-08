@@ -2,7 +2,7 @@
 //  main.swift
 //  Protocol
 //
-//  Created by Aida Moldaly on 06.05.2022.
+//  Created by tamzimun on 06.05.2022.
 //
 
 import Foundation

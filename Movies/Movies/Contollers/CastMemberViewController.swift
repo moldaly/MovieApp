@@ -2,7 +2,7 @@
 //  CastViewController.swift
 //  Movies
 //
-//  Created by Aida Moldaly on 24.05.2022.
+//  Created by tamzimun on 24.05.2022.
 //
 
 import UIKit
