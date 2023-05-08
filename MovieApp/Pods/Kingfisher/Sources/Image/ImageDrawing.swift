@@ -548,20 +548,24 @@ extension KingfisherWrapper where Base: KFCrossPlatformImage {
         if images != nil { return base }
         #endif
 
-        guard let refImage = cgImage else {
+        guard let refImage = cgImage,
+              let decodedRefImage = refImage.decoded(on: context, scale: scale) else
+        {
             assertionFailure("[Kingfisher] Decoding only works for CG-based image.")
             return base
         }
+        return KingfisherWrapper.image(cgImage: decodedRefImage, scale: scale, refImage: base)
+    }
+}
 
-        let size = CGSize(width: CGFloat(refImage.width) / scale, height: CGFloat(refImage.height) / scale)
-
-        context.draw(refImage, in: CGRect(origin: .zero, size: size))
-
-        guard let cgImage = context.makeImage() else {
-            return base
+extension CGImage {
+    func decoded(on context: CGContext, scale: CGFloat) -> CGImage? {
+        let size = CGSize(width: CGFloat(self.width) / scale, height: CGFloat(self.height) / scale)
+        context.draw(self, in: CGRect(origin: .zero, size: size))
+        guard let decodedImageRef = context.makeImage() else {
+            return nil
         }
-
-        return KingfisherWrapper.image(cgImage: cgImage, scale: scale, refImage: base)
+        return decodedImageRef
     }
 }
 
@@ -595,7 +599,7 @@ extension KingfisherWrapper where Base: KFCrossPlatformImage {
         let renderer = UIGraphicsImageRenderer(size: size, format: format)
         
         var useRefImage: Bool = false
-        let posterUrl = renderer.image { rendererContext in
+        let image = renderer.image { rendererContext in
             
             let context = rendererContext.cgContext
             if inverting { // If drawing a CGImage, we need to make context flipped.
@@ -606,13 +610,13 @@ extension KingfisherWrapper where Base: KFCrossPlatformImage {
             useRefImage = draw(context)
         }
         if useRefImage {
-            guard let cgImage = posterUrl.cgImage else {
+            guard let cgImage = image.cgImage else {
                 return base
             }
             let ref = refImage ?? base
             return KingfisherWrapper.image(cgImage: cgImage, scale: format.scale, refImage: ref)
         } else {
-            return posterUrl
+            return image
         }
         #endif
     }
